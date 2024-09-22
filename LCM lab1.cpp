@@ -1,29 +1,29 @@
 #include <iostream>
+#include <algorithm>
 using namespace std;
 
-int gcd(int a, int b) {
-	while (b != 0) {
-		int temp = b;
-		b = a % b;
-		a = temp;
-	}
-	return a;
+int gcd(int num1, int num2) {
+    int result = min(num1, num2);
+
+    while (result > 0) {
+        if (num1 % result == 0 && num2 % result == 0) {
+            break;
+        }
+        result--;
+    }
+    return result;
 }
 
-int lcm(int a, int b) {
-	return(a * b) / gcd(a, b);
+int lcm(int num1, int num2) {
+    return (num1 * num2) / gcd(num1, num2);
 }
+
 int main() {
-	int num1, num2;
-	cout << "Enter two numbers:";
-	cin >> num1 >> num2;
+    int num1, num2;
+    cout << "Enter the numbers: ";
+    cin >> num1 >> num2;
 
-	int result = lcm(num1, num2);
-	cout << "LCM of" << " " << num1 << " " << "and" << " " << num2 << " " << "is" << " " << result << endl;
+    cout << "LCM: " << lcm(num1, num2) << endl;
 
-	return 0;
+    return 0;
 }
-
-
-
-
